@@ -85,11 +85,10 @@ ScrollTrigger.create({
   onLeaveBack: () => document.body.classList.remove("is-inverted"),
 });
 
-const cursor = document.querySelector(".cursor");
-const cursorDot = document.querySelector(".cursor-dot");
 const preview = document.querySelector(".hover-preview");
 const previewImage = preview.querySelector("img");
-const canUseCustomCursor = window.matchMedia("(pointer: fine)").matches && cursor && cursorDot;
+const cursor = document.querySelector(".cursor");
+const canUseCustomCursor = window.matchMedia("(pointer: fine)").matches && cursor;
 
 if (canUseCustomCursor) {
   document.documentElement.classList.add("has-custom-cursor");
@@ -103,22 +102,39 @@ window.addEventListener("mousemove", (event) => {
   mouseY = event.clientY;
 
   if (canUseCustomCursor) {
-    gsap.to(cursor, { x: mouseX, y: mouseY, duration: 0.34, ease: "power3.out" });
-    gsap.to(cursorDot, { x: mouseX, y: mouseY, duration: 0.08, ease: "power2.out" });
+    gsap.to(cursor, {
+      x: mouseX,
+      y: mouseY,
+      opacity: 1,
+      duration: 0.32,
+      ease: "power3.out",
+    });
   }
 
   gsap.to(preview, { x: mouseX + 170, y: mouseY + 12, duration: 0.45, ease: "power3.out" });
 });
 
-document.querySelectorAll("a, .magnetic").forEach((element) => {
+document.querySelectorAll("a, img, .magnetic").forEach((element) => {
   element.addEventListener("mouseenter", () => {
     if (!canUseCustomCursor) return;
-    gsap.to(cursor, { scale: 2.25, duration: 0.26, ease: "power3.out" });
+
+    gsap.to(cursor, {
+      scale: 2.45,
+      opacity: 0.9,
+      duration: 0.28,
+      ease: "power3.out",
+    });
   });
 
   element.addEventListener("mouseleave", () => {
     if (!canUseCustomCursor) return;
-    gsap.to(cursor, { scale: 1, duration: 0.26, ease: "power3.out" });
+
+    gsap.to(cursor, {
+      scale: 1,
+      opacity: 1,
+      duration: 0.28,
+      ease: "power3.inOut",
+    });
   });
 });
 
