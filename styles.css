@@ -80,11 +80,20 @@ html.has-custom-cursor a {
   mix-blend-mode: normal;
   opacity: 0;
   transform: translate(-50%, -50%) scale(1);
+  transition: background 220ms ease, box-shadow 220ms ease;
   will-change: transform, opacity;
 }
 
 html.has-custom-cursor .cursor {
   display: block;
+}
+
+html.has-custom-cursor .cursor.is-image-hover {
+  background: rgba(255, 59, 48, 0.56);
+  box-shadow:
+    0 0 0 1px rgba(247, 247, 240, 0.92),
+    0 0 0 12px rgba(255, 59, 48, 0.1),
+    0 22px 60px rgba(255, 59, 48, 0.34);
 }
 
 .ambient-cube {
@@ -246,6 +255,13 @@ main {
   filter: contrast(1.06) saturate(0.92);
   transform: rotate(-2deg);
   pointer-events: auto;
+  transition: transform 420ms ease, filter 420ms ease, opacity 420ms ease;
+}
+
+.fashion-portrait:hover {
+  opacity: 1;
+  filter: contrast(1.1) saturate(1);
+  transform: rotate(-1deg) scale(1.035) translateY(-8px);
 }
 
 .fashion-portrait::before {

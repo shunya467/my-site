@@ -147,17 +147,22 @@ window.addEventListener("mousemove", (event) => {
 document.querySelectorAll("a, img, .magnetic").forEach((element) => {
   element.addEventListener("mouseenter", () => {
     if (!canUseCustomCursor) return;
+    const isImageTarget = element.matches("img, .fashion-portrait, .work-item");
+
+    cursor.classList.toggle("is-image-hover", isImageTarget);
 
     gsap.to(cursor, {
-      scale: 2.45,
-      opacity: 0.9,
-      duration: 0.28,
+      scale: isImageTarget ? 3.35 : 2.35,
+      opacity: isImageTarget ? 0.82 : 0.9,
+      duration: 0.32,
       ease: "power3.out",
     });
   });
 
   element.addEventListener("mouseleave", () => {
     if (!canUseCustomCursor) return;
+
+    cursor.classList.remove("is-image-hover");
 
     gsap.to(cursor, {
       scale: 1,
