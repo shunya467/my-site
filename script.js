@@ -50,6 +50,25 @@ gsap.from(".hero .char", {
   delay: 0.15,
 });
 
+gsap.utils.toArray(".panel:not(.hero)").forEach((panel, panelIndex) => {
+  const fromLeft = panelIndex % 2 === 0;
+
+  gsap.from(panel.querySelectorAll(".section-index, .reveal-copy, .work-item, .about-large, .about-small, .about-serif, .contact-link"), {
+    xPercent: fromLeft ? -18 : 18,
+    opacity: 0,
+    filter: "blur(14px)",
+    duration: 1.15,
+    ease: "power3.out",
+    stagger: 0.12,
+    scrollTrigger: {
+      trigger: panel,
+      start: "top 72%",
+      end: "top 34%",
+      toggleActions: "play none none reverse",
+    },
+  });
+});
+
 gsap.to(".reveal-copy .char", {
   color: "#f7f7f0",
   stagger: 0.04,
