@@ -50,6 +50,17 @@ gsap.from(".hero .char", {
   delay: 0.15,
 });
 
+gsap.from(".fashion-portrait", {
+  xPercent: 18,
+  yPercent: 5,
+  opacity: 0,
+  rotate: -8,
+  filter: "blur(16px)",
+  duration: 1.35,
+  ease: "power3.out",
+  delay: 0.35,
+});
+
 gsap.utils.toArray(".panel:not(.hero)").forEach((panel, panelIndex) => {
   const fromLeft = panelIndex % 2 === 0;
 
