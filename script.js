@@ -44,10 +44,23 @@ gsap.from(".hero .char", {
   yPercent: 120,
   opacity: 0,
   rotate: 6,
+  scaleX: 0.72,
+  scaleY: 1.28,
   duration: 0.9,
   ease: "back.out(1.7)",
   stagger: 0.018,
   delay: 0.15,
+});
+
+gsap.to(".hero .char", {
+  scaleX: 1.025,
+  scaleY: 0.975,
+  yPercent: -1.8,
+  duration: 1.8,
+  ease: "sine.inOut",
+  repeat: -1,
+  yoyo: true,
+  stagger: 0.035,
 });
 
 gsap.from(".fashion-portrait", {
@@ -68,8 +81,10 @@ gsap.utils.toArray(".panel:not(.hero)").forEach((panel, panelIndex) => {
     xPercent: fromLeft ? -18 : 18,
     opacity: 0,
     filter: "blur(14px)",
+    scaleX: 0.94,
+    scaleY: 1.06,
     duration: 1.15,
-    ease: "power3.out",
+    ease: "elastic.out(1, 0.72)",
     stagger: 0.12,
     scrollTrigger: {
       trigger: panel,
@@ -78,6 +93,10 @@ gsap.utils.toArray(".panel:not(.hero)").forEach((panel, panelIndex) => {
       toggleActions: "play none none reverse",
     },
   });
+});
+
+document.querySelectorAll(".section-index, .work-item span, .about-large, .about-serif, .contact-link").forEach((element) => {
+  element.classList.add("jelly-text");
 });
 
 gsap.to(".reveal-copy .char", {
